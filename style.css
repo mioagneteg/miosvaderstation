@@ -1,0 +1,123 @@
+/* Gör så att padding och border räknas in i elementets storlek */
+* {
+    box-sizing: border-box;
+}
+
+/* Huvudcontainern som använder grid-layout */
+.innehåll {
+    max-width: 1200px; /* Maxbredd */
+    margin: auto; /* Centrerar sidan */
+    display: grid; /* Aktiverar grid */
+    gap: 20px; /* Avstånd mellan grid-items */
+    text-align: center; /* Centrerar text */
+    grid-template-columns: repeat(2, 1fr); /* 2 lika breda kolumner */
+    grid-auto-rows: minmax(auto, auto); /* Radhöjd anpassas efter innehåll */
+    grid-template-areas: 
+    "header header"
+    "nav nav"
+    "main article"
+    "section_graf section_bild"
+    "footer footer"; /* Namnger grid-områden */
+}
+
+/* Styling för alla direktbarn i .innehåll */
+.innehåll > * {
+    padding: 20px; /* Inre avstånd */
+    font-size: 20px; /* Textstorlek */
+    border-radius: 30px; /* Rundade hörn */
+    background-color: rgb(145, 124, 221); /* Bakgrundsfärg */
+}
+
+/* Kopplar header till rätt grid-area */
+header{
+    grid-area: header;
+}
+
+/* Kopplar nav till grid */
+nav{
+    grid-area: nav;
+}
+
+/* Gör menyn horisontell med flexbox */
+nav ul{
+    display: flex;
+    text-align: center;
+    gap: 5px; /* Avstånd mellan länkar */
+    list-style: none; /* Tar bort punkter */
+    padding: 0px;
+    margin: 0px;
+}
+
+/* Gör så varje menyval tar lika stor plats */
+nav li{
+    flex: 1;
+}
+
+/* Styling för länkar */
+nav a{
+    display: block; /* Gör hela rutan klickbar */
+    text-decoration: none; /* Tar bort understrykning */
+    color: black;
+    white-space: nowrap; /* Hindrar radbrytning */
+    background-color: rgb(116, 86, 224);
+    padding: 10px;
+    border-radius: 30px;
+    border: 2px solid rgb(255, 255, 255);
+}
+
+/* Hover-effekt */
+nav a:hover{
+    color: rgb(255, 255, 255);
+}
+
+/* Aktiv länk */
+nav a.active{
+    color: rgb(255, 255, 255);
+}
+
+/* Kopplar main till grid */
+main{
+    grid-area: main;
+}
+
+/* Första sektionen */
+section.graf{
+    grid-area: section_graf;
+}
+
+/* Andra sektionen */
+section.bild{
+    grid-area: section_bild;
+}
+
+/* Artikel */
+article{
+    grid-area: article;
+}
+
+/* Footer längst ner */
+footer{
+    grid-area: footer;
+}
+
+/* Gör bilder responsiva */
+img{
+    width: 100%; /* Anpassar bredd */
+    height: auto; /* Behåller proportioner */
+    border-radius: 30px;
+}
+
+/* Anpassning för små skärmar */
+@media (max-width: 700px){
+    .innehåll {
+        grid-template-columns: 1fr; /* En kolumn */
+        grid-template-areas: 
+        "header"
+        "nav"
+        "main"
+        "article"
+        "section_graf"
+        "section_bild"
+        "footer"; /* Staplar allt vertikalt */
+    }
+}
